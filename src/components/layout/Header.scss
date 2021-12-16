@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  background-color: gray;
+
+
+  &__logout {
+    height: 20px;
+    right: 2px;
+    margin-left: auto;
+  }
+}

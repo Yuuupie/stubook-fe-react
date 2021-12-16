@@ -1,0 +1,18 @@
+.form {
+  margin: auto;
+  width: 310px;
+
+  &__row {
+    display: flex;
+
+    &__label {
+      margin-left: 10px;
+      margin-right: auto;
+    }
+
+    &__input {
+      margin-right: 10px;
+      margin-left: auto;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.task-list {
+    width: 1500px;
+    margin: 24px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  .task-single {
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 4px;
+    display: flex;
+    width: 1500px;
+
+    &__field {
+      margin: 2px 6px;
+      display: inline-block;
+      text-align: left;
+      width: 450px;
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      flex-grow: 1;
+
+      &__button {
+        margin: 0 4px;
+        padding: 0 5px;
+        border-color: unset;
+        background-color: unset;
+        border-radius: 8px;
+      }
+
+      &__edit {
+        @extend .task-single__buttons__button;
+        color: green;
+      }
+
+      &__delete {
+        @extend .task-single__buttons__button;
+        color: red;
+      }
+    }
+  }
+}
+
+.task-new {
+  display: inline-block;
+  background-color: grey;
+  padding: 6px;
+  margin: 20px;
+  width: 400px;
+}
+
+
+
+.task-date-picker {
+  display: inline-block;
+  align-items: center;
+  margin: 4px;
+  height: 20px;
+  font-size: 12px;
+  background-color: white;
+}
