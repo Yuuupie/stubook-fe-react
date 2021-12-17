@@ -1,3 +1,4 @@
+import './Task.scss'
 
 const Task = (props) => {
 

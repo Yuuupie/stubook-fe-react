@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Task from './Task'
+import './Task.scss'
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([])
