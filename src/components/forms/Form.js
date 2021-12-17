@@ -19,16 +19,12 @@ const Form = (props) => {
       <div className='form__row'>
         <label className='form__row__label'>Username:</label>
         <input className='form__row__input' ref={usernameRef} required/>
-      </div>
-
-      <br/>
+      </div><br/>
 
       <div className='form__row'>
         <label className='form__row__label'>Password:</label>
         <input className='form__row__input' ref={passwordRef} required type='password'/>
-      </div>
-
-      <br/>
+      </div><br/>
 
       <button type='submit'>{props.buttonLabel}</button>
     </form>

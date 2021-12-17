@@ -26,21 +26,20 @@
     flex-grow: 1;
 
     &__button {
-      margin: 0 4px;
-      padding: 0 5px;
-      border-color: unset;
+      border: unset;
       background-color: unset;
-      border-radius: 8px;
+      padding: unset;
+      height: 30px;
+      margin: 0 10px;
+      // padding: 0 8px;
     }
 
     &__edit {
       @extend .task-single__buttons__button;
-      color: green;
     }
 
     &__delete {
       @extend .task-single__buttons__button;
-      color: red;
     }
   }
 }
