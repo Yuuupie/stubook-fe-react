@@ -14,18 +14,14 @@ const TaskCreator = () => {
     let tags = []
     for (let i = 0; i < tagCount; i++) {
       tags.push(
-      <>
-        <input className='task-creator__tag' ref={element => {tagRefs.current[i] = element}}/>
-        <br/>
-      </>
+        <>
+          <input className='task-creator__tag' ref={element => {tagRefs.current[i] = element}}/>
+          <br/>
+        </>
       )
     }
-    return tags
-  }
 
-  const addTag = (event) => {
-    event.preventDefault()
-    setTagCount(tagCount + 1)
+    return tags
   }
 
   const createTask = (event) => {
@@ -45,7 +41,8 @@ const TaskCreator = () => {
 
       <label>Tags:</label>
       {printTags()}
-      {tagCount < 5 && <button onClick={addTag}>add tag</button>}
+      {tagCount < 5 &&
+      <button type='button' onClick={() => setTagCount(tagCount + 1)}>add tag</button>}
 
       <label>Due Date:</label>
       <input ref={dueDateRef} required/><br/>

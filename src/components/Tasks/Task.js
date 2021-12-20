@@ -10,11 +10,11 @@ const Task = (props) => {
       <div className='task-single__field'>{props.tags.join(', ')}</div>
       <div className='task-single__field'>{props.dueDate}</div>
       <div className='task-single__buttons'>
-        <button className='task-single__buttons__edit'>
-          <img className='image' alt='edit' src={editButton}/>
+        <button className='task-single__buttons__button'>
+          <img className='button-image' alt='edit' src={editButton}/>
         </button>
-        <button className='task-single__buttons__delete'>
-          <img className='image' alt='delete' src={deleteButton}/>
+        <button className='task-single__buttons__button'>
+          <img className='button-image' alt='delete' src={deleteButton}/>
         </button>
       </div>
     </div>

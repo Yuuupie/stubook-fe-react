@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, createContext } from 'react'
 import Task from './Task'
 import TaskCreator from './TaskCreator'
 import './Task.scss'
@@ -29,8 +29,8 @@ const TaskList = () => {
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, setTasks}}>
         <TaskCreator/>
-        {tasks.map(task => {
-          return <Task title={task.title} tags={task.tags} dueDate={task.dueDate}/>
+        {tasks.map((task, index) => {
+          return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index}/>
         })}
       </TasksContext.Provider>
     </div>
