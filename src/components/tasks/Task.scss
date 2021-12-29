@@ -82,7 +82,7 @@
 
       &--tag {
         @extend .task-creator__input;
-        margin-right: unset;
+        /*margin-right: unset;*/
         margin-bottom: 5px;
       }
     }
@@ -90,7 +90,7 @@
     &__button {
       &--remove-tag {
         all: unset;
-        margin-left: 10px;
+        margin-left: -40px;
         margin-right: 25px;
         border-radius: 100%;
 

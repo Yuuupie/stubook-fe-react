@@ -11,6 +11,13 @@ const TaskCreator = () => {
   const [tagCount, setTagCount] = useState(1)
   const {tasks, setTasks} = useContext(TasksContext)
 
+  const removeTag = (index) => {
+    for (let i = index; i < tagCount - 1; i++) {
+      tagRefs.current[i].value = tagRefs.current[i + 1].value
+    }
+    setTagCount(tagCount - 1)
+  }
+
   const printTags = () => {
     let tags = []
     for (let i = 0; i < tagCount; i++) {
@@ -18,9 +25,9 @@ const TaskCreator = () => {
         <div className='task-creator__row--tag'> 
           {i === 0 && <label className='task-creator__label'>Tags:</label>}
           <input className='task-creator__input--tag' ref={element => {tagRefs.current[i] = element}}/>
-          <button className='task-creator__button--remove-tag'>
+          {i !== 0 && <button type='button' className='task-creator__button--remove-tag' onClick={(event) => removeTag(i)}>
             <img className='task-creator__button--remove-tag__image' src={removeIcon}/>
-          </button>
+          </button>}
         </div>
       )
     }
