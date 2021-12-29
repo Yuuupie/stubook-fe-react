@@ -1,7 +1,7 @@
 import LoginForm from './forms/LoginForm'
 import RegistrationForm from './forms/RegistrationForm'
 import Layout from './layout/Layout'
-import TaskList from './Tasks/TaskList'
+import TaskList from './tasks/TaskList'
 import './Stubook.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
