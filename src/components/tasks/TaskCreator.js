@@ -7,9 +7,8 @@ const TaskCreator = () => {
   const titleRef = useRef()
   const tagRefs = useRef([])
   const dueDateRef = useRef()
-
   const [tagCount, setTagCount] = useState(1)
-  const {tasks, setTasks} = useContext(TasksContext)
+  const {tasks, tasksDispatch} = useContext(TasksContext)
 
   const removeTag = (index) => {
     for (let i = index; i < tagCount - 1; i++) {
@@ -25,7 +24,8 @@ const TaskCreator = () => {
         <div className='task-creator__row--tag'> 
           {i === 0 && <label className='task-creator__label'>Tags:</label>}
           <input className='task-creator__input--tag' ref={element => {tagRefs.current[i] = element}}/>
-          {i !== 0 && <button type='button' className='task-creator__button--remove-tag' onClick={(event) => removeTag(i)}>
+          {i !== 0 &&
+          <button type='button' className='task-creator__button--remove-tag' onClick={() => removeTag(i)}>
             <img className='task-creator__button--remove-tag__image' src={removeIcon}/>
           </button>}
         </div>
@@ -38,9 +38,12 @@ const TaskCreator = () => {
   const createTask = (event) => {
     event.preventDefault()
     let title = titleRef.current.value
-    let tags = [tagRefs.current[0].value]
+    let tags = []
     let dueDate = dueDateRef.current.value
-    setTasks((prev) => [...prev, {title, tags, dueDate}])
+    for (let i = 0; i < tagCount; i++) {
+      tags.push(tagRefs.current[i].value)
+    }
+    tasksDispatch({type: 'create', newTask: {title, tags, dueDate}})
   }
 
   return (

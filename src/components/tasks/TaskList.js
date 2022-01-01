@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react'
+import { useReducer, useState, createContext } from 'react'
 import Task from './Task'
 import TaskCreator from './TaskCreator'
 import './Task.scss'
@@ -6,7 +6,16 @@ import './Task.scss'
 export const TasksContext = createContext()
 
 const TaskList = () => {
-  const [tasks, setTasks] = useState([
+  const [tasks, tasksDispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'create':
+        return [...state, action.newTask]
+      case 'remove':
+        let tasksCopy = [...state]
+        tasksCopy.splice(action.index, 1)
+        return tasksCopy
+    }
+  }, [
     {
       title: 'dummy task',
       tags: [
@@ -22,12 +31,20 @@ const TaskList = () => {
         'tag 4'
       ],
       dueDate: '22-12-2021'
+    },
+    {
+      title: 'another another dummy task',
+      tags: [
+        'tag 3',
+        'tag 5'
+      ],
+      dueDate: '23-12-2021'
     }
   ])
 
   return (
     <div className='task-list'>
-      <TasksContext.Provider value={{tasks, setTasks}}>
+      <TasksContext.Provider value={{tasks, tasksDispatch}}>
         <TaskCreator/>
         {tasks.map((task, index) => {
           return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index}/>
