@@ -4,7 +4,7 @@ import './Header.scss'
 const Header = () => {
    return (
      <div className='header'>
-       <Link className='header__logout' to='/login'>logout</Link>
+       <Link className='header__logout' to='/login'>Log Out</Link>
      </div>
    )
 }
