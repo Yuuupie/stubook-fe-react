@@ -1,14 +1,18 @@
-import { useState, useRef, useContext } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 import './Task.scss'
 import { TasksContext } from './TaskList'
 import removeIcon from '../../img/remove.png'
 
-const TaskCreator = () => {
+const TaskUpdater = (props) => {
   const titleRef = useRef()
   const tagRefs = useRef([])
   const dueDateRef = useRef()
   const [tagCount, setTagCount] = useState(1)
   const {tasks, tasksDispatch} = useContext(TasksContext)
+
+  useEffect(() => {
+
+  })
 
   const removeTag = (index) => {
     for (let i = index; i < tagCount - 1; i++) {
@@ -21,7 +25,7 @@ const TaskCreator = () => {
     let tags = []
     for (let i = 0; i < tagCount; i++) {
       tags.push(
-        <div className='task-creator__row--tag'> 
+        <div className='task-creator__row--tag'>
           {i === 0 && <label className='task-creator__label'>Tags:</label>}
           <input className='task-creator__input--tag' ref={element => {tagRefs.current[i] = element}}/>
           {i !== 0 &&
@@ -69,5 +73,5 @@ const TaskCreator = () => {
   )
 }
 
-export default TaskCreator
+export default TaskUpdater
 

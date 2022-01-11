@@ -1,11 +1,13 @@
 import { useReducer, useState, createContext } from 'react'
 import Task from './Task'
-import TaskCreator from './TaskCreator'
+import TaskUpdater from './TaskUpdater'
 import './Task.scss'
 
 export const TasksContext = createContext()
 
 const TaskList = () => {
+  const [taskCreateMode, setTaskCreateMode] = useState(false)
+
   const [tasks, tasksDispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'create':
@@ -45,7 +47,8 @@ const TaskList = () => {
   return (
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, tasksDispatch}}>
-        <TaskCreator/>
+        <button onClick={() => setTaskCreateMode(true)}>Create Task</button>
+        {taskCreateMode && <TaskUpdater/>}
         {tasks.map((task, index) => {
           return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index}/>
         })}
