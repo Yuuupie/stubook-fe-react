@@ -13,7 +13,7 @@ const Task = (props) => {
       <div className='task-single__field'>{props.tags.join(', ')}</div>
       <div className='task-single__field'>{props.dueDate}</div>
       <div className='task-single__buttons'>
-        <button className='task-single__buttons__button'>
+        <button className='task-single__buttons__button' onClick={() => props.updateTask(props.index)}>
           <img className='button-image' alt='edit' src={editButton}/>
         </button>
         <button className='task-single__buttons__button' onClick={() => tasksDispatch({type: 'remove', index: props.index})}>

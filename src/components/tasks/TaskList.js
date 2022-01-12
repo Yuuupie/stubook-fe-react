@@ -6,14 +6,20 @@ import './Task.scss'
 export const TasksContext = createContext()
 
 const TaskList = () => {
-  const [taskCreateMode, setTaskCreateMode] = useState(false)
+  const [isUpdatingTask, setIsUpdatingTask] = useState(false)
+  const [updateIndex, setUpdateIndex] = useState(-1)
 
   const [tasks, tasksDispatch] = useReducer((state, action) => {
+    setIsUpdatingTask(false)
+    setUpdateIndex(-1)
+    let tasksCopy = [...state]
     switch (action.type) {
       case 'create':
         return [...state, action.newTask]
+      case 'update':
+        tasksCopy.splice(action.index, 1, action.newTask)
+        return tasksCopy
       case 'remove':
-        let tasksCopy = [...state]
         tasksCopy.splice(action.index, 1)
         return tasksCopy
     }
@@ -44,13 +50,18 @@ const TaskList = () => {
     }
   ])
 
+  const updateTask = (index) => {
+    setUpdateIndex(index)
+    setIsUpdatingTask(true)
+  }
+
   return (
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, tasksDispatch}}>
-        <button onClick={() => setTaskCreateMode(true)}>Create Task</button>
-        {taskCreateMode && <TaskUpdater/>}
+        {!isUpdatingTask && <button onClick={() => setIsUpdatingTask(true)}>Create Task</button>}
+        {isUpdatingTask && <TaskUpdater index={updateIndex}/>}
         {tasks.map((task, index) => {
-          return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index}/>
+          return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index} updateTask={updateTask}/>
         })}
       </TasksContext.Provider>
     </div>
