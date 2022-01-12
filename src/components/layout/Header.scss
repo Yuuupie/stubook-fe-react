@@ -1,13 +1,17 @@
 .header {
+  height: 40px;
+  margin: 10px 20px;
   display: flex;
   background-color: lightgrey;
-  border-bottom: 1px solid grey;
+  border: 2px solid grey;
+  border-radius: 8px;
 
   &__logout {
     text-decoration: unset;
     height: 20px;
     right: 2px;
-    margin: 5px 40px 5px auto;
+    margin: auto;
+    margin-right: 40px;
     color: #91578b;
     font-size: 18px;
     font-weight: bold;

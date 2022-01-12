@@ -58,7 +58,7 @@ const TaskList = () => {
   return (
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, tasksDispatch}}>
-        {!isUpdatingTask && <button onClick={() => setIsUpdatingTask(true)}>Create Task</button>}
+        {!isUpdatingTask && <button className='task-create-button' onClick={() => setIsUpdatingTask(true)}>Create Task</button>}
         {isUpdatingTask && <TaskUpdater index={updateIndex}/>}
         {tasks.map((task, index) => {
           return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index} updateTask={updateTask}/>
