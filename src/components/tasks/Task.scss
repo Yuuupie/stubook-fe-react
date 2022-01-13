@@ -69,6 +69,9 @@ $background-main: rgb(250, 250, 255);
     border: solid 3px purple;
     border-radius: 20px;
     box-shadow: 0 0 5px;
+    display: flex;
+    flex-direction: column;
+
 
     &__heading {
 
@@ -111,6 +114,16 @@ $background-main: rgb(250, 250, 255);
     }
 
     &__button {
+      &--exit {
+        all: unset;
+        align-self: flex-end;
+        width: 15px;
+        height: 15px;
+        margin: 10px 10px -15px;
+        display: flex;
+        cursor: pointer;
+      }
+
       &--remove-tag {
         all: unset;
         margin-left: -40px;
@@ -137,6 +150,8 @@ $background-main: rgb(250, 250, 255);
 
       &--submit {
         margin: 10px;
+        width: 100px;
+        align-self: center;
       }
     }
   }

@@ -55,11 +55,16 @@ const TaskList = () => {
     setIsUpdatingTask(true)
   }
 
+  const closePrompt = () => {
+    setUpdateIndex(-1)
+    setIsUpdatingTask(false)
+  }
+
   return (
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, tasksDispatch}}>
         {!isUpdatingTask && <button className='task-create-button' onClick={() => setIsUpdatingTask(true)}>Create Task</button>}
-        {isUpdatingTask && <TaskUpdater index={updateIndex}/>}
+        {isUpdatingTask && <TaskUpdater index={updateIndex} closePrompt={closePrompt}/>}
         {tasks.map((task, index) => {
           return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index} updateTask={updateTask}/>
         })}
