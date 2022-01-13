@@ -1,15 +1,16 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import './Form.scss'
 
 const Form = (props) => {
-  const usernameRef = useRef('')
-  const passwordRef = useRef('')
+  const [fields, setFields] = useState({username: '', password: ''})
 
   const submit = (event) => {
     event.preventDefault()
-    let username = usernameRef.current.value
-    let password = passwordRef.current.value
-    props.submitAction(username, password)
+    props.submitAction(fields.username, fields.password)
+  }
+
+  const handleChange = (event) => {
+    setFields((prev) => ({...prev, [event.target.name]: event.target.value}))
   }
 
   return (
@@ -18,12 +19,12 @@ const Form = (props) => {
 
       <div className='form__row'>
         <label className='form__row__label'>Username:</label>
-        <input className='form__row__input' ref={usernameRef} required/>
+        <input className='form__row__input' name='username' value={fields.username} onChange={handleChange} required/>
       </div><br/>
 
       <div className='form__row'>
         <label className='form__row__label'>Password:</label>
-        <input className='form__row__input' ref={passwordRef} required type='password'/>
+        <input className='form__row__input' name='password' value={fields.password} onChange={handleChange} required type='password'/>
       </div><br/>
 
       <button type='submit'>{props.buttonLabel}</button>
