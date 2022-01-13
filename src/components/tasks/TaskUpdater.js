@@ -22,13 +22,12 @@ const TaskUpdater = (props) => {
   useEffect(() => {
     if (props.index !== -1) {
       let task = tasks[props.index]
-      // setFields({title: task.title, tags: task.tags, dueDate: task.dueDate})
       fieldsDispatch({field: 'all', value: task})
       setTagCount(task.tags.length)
     } else {
       setTagCount(1)
     }
-  }, [props])
+  }, [props, tasks])
 
   const handleChange = (event) => {
     fieldsDispatch({field: event.target.name, value: event.target.value})
@@ -80,7 +79,7 @@ const TaskUpdater = (props) => {
           <input name='tags' className='task-creator__input--tag' onChange={(event) => handleTagChange(event, index)} value={fields.tags[index]}/>
           {index !== 0 &&
           <button type='button' className='task-creator__button--remove-tag' onClick={() => removeTag(index)}>
-            <img className='task-creator__button--remove-tag__image' src={removeIcon}/>
+            <img className='task-creator__button--remove-tag__image' alt='remove-tag' src={removeIcon}/>
           </button>}
       </div>
       })}

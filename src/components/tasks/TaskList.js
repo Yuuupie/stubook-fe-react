@@ -22,6 +22,9 @@ const TaskList = () => {
       case 'remove':
         tasksCopy.splice(action.index, 1)
         return tasksCopy
+      default:
+        alert('error')
+        return state
     }
   }, [
     {
@@ -64,9 +67,9 @@ const TaskList = () => {
     <div className='task-list'>
       <TasksContext.Provider value={{tasks, tasksDispatch}}>
         {!isUpdatingTask && <button className='task-create-button' onClick={() => setIsUpdatingTask(true)}>Create Task</button>}
-        {isUpdatingTask && <TaskUpdater index={updateIndex} closePrompt={closePrompt}/>}
+        {isUpdatingTask && <TaskUpdater index={updateIndex} {...{closePrompt}}/>}
         {tasks.map((task, index) => {
-          return <Task title={task.title} tags={task.tags} dueDate={task.dueDate} index={index} updateTask={updateTask}/>
+          return <Task {...{task, index, updateTask}} />
         })}
       </TasksContext.Provider>
     </div>
