@@ -1,14 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
+import UserService from '../../api/UserService'
 import Form from './Form'
 
 const LoginForm = (props) => {
   const navigate = useNavigate()
 
   const loginSubmit = (username, password) => {
-    let accounts = JSON.parse(localStorage.getItem('accounts'))
-    if (username in accounts && password === accounts[username]) {
+    UserService.login(username, password).then((res) => {
       navigate('/tasklist')
-    }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   return (

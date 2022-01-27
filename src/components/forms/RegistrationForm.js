@@ -1,19 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
+import UserService from '../../api/UserService'
 import Form from './Form'
 
 const RegistrationForm = (props) => {
   const navigate = useNavigate()
 
   const registrationSubmit = (username, password) => {
-    let accounts = JSON.parse(localStorage.getItem('accounts'))
-    if (accounts == null) {
-      accounts = {}
-    }
-    if (!(username in accounts)) {
-      accounts[username] = password
-    }
-    localStorage.setItem('accounts', JSON.stringify(accounts))
-    navigate('/tasklist')
+    UserService.register(username, password).then((res) => {
+      navigate('/')
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   return (
