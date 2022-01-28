@@ -1,4 +1,5 @@
-import { useReducer, useState, createContext } from 'react'
+import { useReducer, useState, createContext, useEffect } from 'react'
+import TaskService from '../../api/TaskService'
 import Task from './Task'
 import TaskUpdater from './TaskUpdater'
 import './Task.scss'
@@ -14,6 +15,8 @@ const TaskList = () => {
     setUpdateIndex(-1)
     let tasksCopy = [...state]
     switch (action.type) {
+      case 'init':
+        return action.tasks
       case 'create':
         return [...state, action.newTask]
       case 'update':
@@ -26,32 +29,15 @@ const TaskList = () => {
         alert('error')
         return state
     }
-  }, [
-    {
-      title: 'dummy task',
-      tags: [
-        'tag 1',
-        'tag 2'
-      ],
-      dueDate: '21-12-2021'
-    },
-    {
-      title: 'another dummy task',
-      tags: [
-        'tag 3',
-        'tag 4'
-      ],
-      dueDate: '22-12-2021'
-    },
-    {
-      title: 'another another dummy task',
-      tags: [
-        'tag 3',
-        'tag 5'
-      ],
-      dueDate: '23-12-2021'
-    }
-  ])
+  }, [])
+
+  useEffect(() => {
+    TaskService.fetch().then((res) => {
+      tasksDispatch({ type: 'init', tasks: res.data.tasks })
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
 
   const updateTask = (index) => {
     setUpdateIndex(index)
