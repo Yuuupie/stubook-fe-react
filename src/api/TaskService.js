@@ -5,8 +5,16 @@ class TaskService {
     return taskAxiosInstance.get('/')
   }
 
-  create(title, dueDate) {
-    return taskAxiosInstance.post('/', { title, dueDate })
+  create(task) {
+    return taskAxiosInstance.post('/', task)
+  }
+
+  update(task) {
+    return taskAxiosInstance.put('/', task)
+  }
+
+  delete(id) {
+    return taskAxiosInstance.delete('/', { data: {id} })
   }
 }
 
