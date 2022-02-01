@@ -4,6 +4,7 @@ import './Form.scss'
 const Form = (props) => {
   const [fields, setFields] = useState({username: '', password: ''})
 
+  /* Login or register on submission depending on function passed as prop */
   const submit = (event) => {
     event.preventDefault()
     props.submitAction(fields.username, fields.password)

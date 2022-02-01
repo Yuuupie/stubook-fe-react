@@ -2,7 +2,6 @@ import { userAxiosInstance } from "./APIConstants"
 
 class UserService {
   login(username, password) {
-    console.log(`${username} and ${password}`)
     return userAxiosInstance.post('/login', { username, password })
   }
 
