@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export const userAxiosInstance = axios.create({
-  baseURL: 'http://localhost:3001/api/user',
+  baseURL: process.env.REACT_APP_USER_API,
   withCredentials: true
 })
 
 export const taskAxiosInstance = axios.create({
-  baseURL: 'http://localhost:3001/api/task',
+  baseURL: process.env.REACT_APP_TASK_API,
   withCredentials: true
 })
