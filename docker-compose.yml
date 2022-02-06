@@ -1,0 +1,11 @@
+services:
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+
+networks:
+  default:
+    external: true
+    name: stubook
+
