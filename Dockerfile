@@ -15,6 +15,8 @@ RUN npm run build
 FROM nginx:latest
 
 COPY --from=builder /app/build /usr/share/nginx/html
+COPY ssl/yuuupie.xyz /etc/letsencrypt/live/yuuupie.xyz
+COPY ssl/options-ssl-nginx.conf /etc/letsencrypt
+COPY ssl/ssl-dhparams.pem /etc/letsencrypt
 COPY nginx.conf /etc/nginx/nginx.conf
-
 
