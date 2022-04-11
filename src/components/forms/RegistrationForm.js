@@ -2,11 +2,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import UserService from '../../api/UserService'
 import Form from './Form'
 
-const RegistrationForm = (props) => {
+const RegistrationForm = () => {
   const navigate = useNavigate()
 
   const registrationSubmit = (username, password) => {
-    UserService.register(username, password).then((res) => {
+    UserService.register(username, password).then(() => {
       navigate('/')
     }).catch((err) => {
       console.log(err)

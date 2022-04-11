@@ -8,7 +8,7 @@ import { loginContext } from '../Stubook'
 
 const TaskList = () => {
   const navigate = useNavigate()
-  const {loggedIn, setLoggedIn} = useContext(loginContext)
+  const {loggedIn} = useContext(loginContext)
   const [taskToUpdate, setTaskToUpdate] = useState({
     // Status to determine if task prompt should be open
     isUpdating: false,
@@ -26,7 +26,7 @@ const TaskList = () => {
     refreshTasks()
   }, [])
   
-  /* Fetch tasks from API */
+  /* Fetch tasks from API and close prompt in case it's open */
   const refreshTasks = () => {
     TaskService.fetch().then((res) => {
       setTasks(res.data.tasks)
@@ -69,19 +69,19 @@ const TaskList = () => {
 
   /* API calls for creating, updating, and deleting tasks */
   const createTask = (task) => {
-    TaskService.create(task).then((res) => {
+    TaskService.create(task).then(() => {
       refreshTasks()
     })
   }
 
   const updateTask = (task) => {
-    TaskService.update(task).then((res) => {
+    TaskService.update(task).then(() => {
       refreshTasks()
     })
   }
 
   const deleteTask = (id) => {
-    TaskService.delete(id).then((res) => {
+    TaskService.delete(id).then(() => {
       refreshTasks()
     })
   }

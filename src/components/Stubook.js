@@ -8,7 +8,8 @@ import { useState, createContext } from 'react'
 
 export const loginContext = createContext()
 
-const Stubook = (props) => {
+const Stubook = () => {
+  // Global state variable for login status
   const [loggedIn, setLoggedIn] = useState(false)
 
   return (

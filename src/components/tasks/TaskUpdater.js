@@ -3,8 +3,7 @@ import './Task.scss'
 import removeIcon from '../../img/remove.png'
 
 const TaskUpdater = (props) => {
-  // Fields on form
-  // Decision to useReducer instead of useState to easier maintainability
+  // Fields on form. Decision to use useReducer instead of useState made for easier maintainability.
   const [fields, fieldsDispatch] = useReducer((state, action) => {
     switch (action.operation) {
       // Set all fields
@@ -25,7 +24,7 @@ const TaskUpdater = (props) => {
     }
   }, props.task)
 
-  /* Update fields on form if another task is chosen to edit while prompt is already open */
+  /* Update fields on form if second task is chosen to edit while prompt is already open for first task */
   useEffect(() => {
     fieldsDispatch({operation: 'init', task: props.task})
   }, [props])
@@ -64,11 +63,13 @@ const TaskUpdater = (props) => {
   return (
     <form className='task-creator' onSubmit={submitTask}>
       <button className='task-creator__button--exit' type='button' onClick={() => props.closePrompt()}>
+        {/* Generated image for top-right 'X' on prompt for closing */}
         <svg className='button-image' xmlns="http://www.w3.org/2000/svg">
           <line x1='1' y1='1' x2='10' y2='10' stroke='black' strokeWidth='2'/>
           <line x1='1' y1='10' x2='10' y2='1' stroke='black' strokeWidth='2'/>
         </svg>
       </button>
+
       <h1 className='task-creator__heading'>{props.newTask ? 'Create Task' : 'Update Task'}</h1>
 
       <div className='task-creator__row'>

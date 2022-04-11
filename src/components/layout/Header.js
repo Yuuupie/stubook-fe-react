@@ -4,7 +4,7 @@ import './Header.scss'
 import { loginContext } from '../Stubook'
 
 const Header = () => {
-  const {loggedIn, setLoggedIn} = useContext(loginContext)
+  const {setLoggedIn} = useContext(loginContext)
 
   return (
     <div className='header'>
