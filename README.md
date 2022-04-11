@@ -2,9 +2,13 @@ Hosted on https://yuuupie.xyz
 
 # Stubook - React Front-end
 
-This is a React-based front-end for the Stubook website (student-book), a simple to-do web application. The aim of this project is to practice and showcase my skills with ReactJs.
+This is a React-based front-end for the Stubook website (student-book), a simple to-do web application. The aim of this project is to practice and showcase my skills with ReactJs, nginx, and docker.
 
 ## Build
+
+#### First time setup
+Simply install the packages with
+> npm ci
 
 ### Local
 To run a local build, after adjusting the API_URL to the back-end to be used, run
