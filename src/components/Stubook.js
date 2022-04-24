@@ -4,13 +4,18 @@ import Layout from './layout/Layout'
 import TaskList from './tasks/TaskList'
 import './Stubook.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 
 export const loginContext = createContext()
 
 const Stubook = () => {
   // Global state variable for login status
   const [loggedIn, setLoggedIn] = useState(false)
+
+  // Set tab title
+  useEffect(() => {
+    document.title = "Stubook"
+  })
 
   return (
     <div>
